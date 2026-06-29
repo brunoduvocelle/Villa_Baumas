@@ -244,6 +244,21 @@
       word-break: break-word; 
     }
 
+    .lavender-icon {
+      width: clamp(36px, 6vw, 48px);
+      height: clamp(36px, 6vw, 48px);
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+      border: 2px solid #FFFFFF;
+      transform: rotate(6deg);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      flex-shrink: 0;
+    }
+    .lavender-icon:hover {
+      transform: scale(1.15) rotate(-6deg);
+    }
+
     .sub-title {
       font-family: 'Inter', sans-serif;
       font-size: clamp(18px, 4vw, 28px);
@@ -680,7 +695,10 @@
         <div class="kicker"><span class="dot" aria-hidden="true"></span> Sérénité · Détente · Nature</div>
 
         <h2 class="hero-title">
-          <span class="highlight-title">La Villa Baumas</span>
+          <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+            <span class="highlight-title">La Villa Baumas</span>
+            <img src="https://ea35tq5wi2i.exactdn.com/wp-content/uploads/2026/02/bouquet-de-lavande-1.jpg?strip=all&quality=90&webp=90&avif=70" alt="Bouquet de lavande" class="lavender-icon">
+          </div>
           <span class="sub-title">Votre adresse d’évasion en Drôme</span>
         </h2>
 
