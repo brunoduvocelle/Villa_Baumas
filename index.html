@@ -11,21 +11,26 @@
   
   <style>
     :root {
-      /* Thème Clair "Provence Premium" */
-      --bg: #FAFAF8; 
-      --card: #FFFFFF;
-      --card-hover: #F8F7F5;
+      /* Thème Clair "Provence Premium" ajusté pour la transparence */
+      --bg: #F5F2EB; 
+      --card: rgba(255, 255, 255, 0.82);
+      --card-hover: rgba(255, 255, 255, 0.92);
       --text: #2D3748; 
-      --muted: #718096; 
+      --muted: #4A5568; 
 
       --accent-1: #D4A373; 
       --accent-2: #7C3AED; 
       --accent-3: #5B8266; 
 
-      --border: rgba(0, 0, 0, 0.06);
-      --shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
-      --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.08);
+      --border: rgba(0, 0, 0, 0.08);
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.1);
       --radius: 24px;
+
+      /* Nouvelle variable pour l'image de fond provençale */
+      --stone-bg-image: url('https://benz24.fr/media/webp_image/catalog/product/cache/e21cd952b1c4efa11f944004b4b668c8/t/e/tertus-ton-naturel.webp');
+      --stone-bg-size: 550px auto; /* Taille de la tuile de pierre */
+      --stone-bg-position: center top; /* Position du fond fixe */
     }
 
     * { box-sizing: border-box; }
@@ -42,12 +47,13 @@
       font-family: 'Inter', system-ui, sans-serif;
       color: var(--text);
       line-height: 1.6;
+      
+      /* Fond principal de pierre appliqué une seule fois pour la performance */
       background-color: var(--bg);
-      background-image:
-        radial-gradient(800px circle at 0% 0%, rgba(124, 58, 237, 0.03), transparent),
-        radial-gradient(800px circle at 100% 20%, rgba(212, 163, 115, 0.05), transparent),
-        radial-gradient(800px circle at 50% 100%, rgba(91, 130, 102, 0.04), transparent);
+      background-image: var(--stone-bg-image);
+      background-size: var(--stone-bg-size);
       background-attachment: fixed;
+      background-repeat: repeat;
     }
 
     img, svg {
@@ -67,7 +73,8 @@
       top: 0;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      background: rgba(250, 250, 248, 0.90);
+      /* Surcouche de couleur semi-transparente permettant de voir le fond de pierre */
+      background: rgba(250, 246, 240, 0.85);
       border-bottom: 1px solid var(--border);
       z-index: 100;
     }
@@ -76,7 +83,7 @@
       width: 100%;
       max-width: 1200px;
       margin: 0 auto;
-      padding: 0 16px; /* Réduit pour laisser plus d'espace sur mobile */
+      padding: 0 16px;
     }
     
     header .container { padding: 0; }
@@ -93,7 +100,7 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      flex-wrap: wrap; /* Autorise le retour à la ligne sur très petits écrans */
+      flex-wrap: wrap;
     }
 
     .logo {
@@ -165,18 +172,22 @@
       grid-template-columns: 1.05fr 0.95fr;
       gap: 32px;
       align-items: stretch;
-      min-width: 0; /* Empêche la grille de forcer une largeur trop grande */
+      min-width: 0;
     }
     @media (max-width: 992px) {
       .hero-grid { grid-template-columns: 1fr; gap: 24px; }
     }
 
     .card {
+      /* Surcouche de couleur semi-transparente permettant de voir le fond de pierre */
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       min-width: 0;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: background 0.3s ease, box-shadow 0.3s ease;
     }
 
     /* --- HERO MAIN --- */
@@ -185,11 +196,9 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background: #FFFFFF;
     }
     
     @media (max-width: 768px) {
-      /* Réduction importante des paddings sur mobile */
       .hero { padding: 24px 0 16px; }
       .hero-main { padding: 28px 16px; }
     }
@@ -201,7 +210,8 @@
       padding: 6px 12px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: #FAFAF8;
+      /* Surcouche de couleur semi-transparente permettant de voir le fond de pierre */
+      background: rgba(250, 246, 240, 0.8);
       color: var(--text);
       font-weight: 600;
       font-size: 11px;
@@ -209,7 +219,7 @@
       letter-spacing: 1px;
       align-self: flex-start;
       margin-bottom: 24px;
-      flex-wrap: wrap; /* Autorise le texte à revenir à la ligne si nécessaire */
+      flex-wrap: wrap;
     }
 
     .dot {
@@ -219,7 +229,6 @@
       flex-shrink: 0;
     }
 
-    /* HIERARCHIE DU TITRE FORTEMENT ACCENTUÉE */
     .hero-title {
       display: flex;
       flex-direction: column;
@@ -227,9 +236,16 @@
       margin-bottom: 24px;
     }
 
+    /* Nouvelle classe pour le contenu du titre */
+    .hero-title-content {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
     .highlight-title {
       font-family: 'Playfair Display', serif;
-      /* Taille ajustée pour mieux passer sur petit écran */
       font-size: clamp(38px, 9vw, 84px); 
       font-weight: 800;
       line-height: 1.1;
@@ -240,8 +256,8 @@
       color: transparent;
       padding-bottom: 4px;
       margin-left: -2px; 
-      /* Cette propriété est vitale : elle coupe le mot s'il est trop long pour l'écran */
       word-break: break-word; 
+      filter: drop-shadow(0 1px 0px rgba(255,255,255,0.8));
     }
 
     .lavender-icon {
@@ -263,13 +279,13 @@
       font-family: 'Inter', sans-serif;
       font-size: clamp(18px, 4vw, 28px);
       font-weight: 400;
-      color: #718096; 
+      color: #5A6A80; 
       letter-spacing: -0.5px;
       line-height: 1.3;
     }
 
     .hero-sub {
-      color: #4A5568;
+      color: #3A4556;
       font-size: clamp(16px, 3.5vw, 18px);
       max-width: 100%;
       margin-bottom: 32px;
@@ -291,9 +307,11 @@
       align-items: center;
       padding: 14px;
       border-radius: 20px;
-      background: #FAFAF8;
+      /* Surcouche de couleur semi-transparente permettant de voir le fond de pierre */
+      background: rgba(250, 246, 240, 0.6);
       border: 1px solid var(--border);
       transition: all 0.3s ease;
+      backdrop-filter: blur(4px);
     }
     @media (max-width: 480px) {
       .badge {
@@ -304,7 +322,8 @@
     }
 
     .badge:hover { 
-      background: #FFFFFF;
+      /* Surcouche de couleur semi-transparente permettant de voir le fond de pierre */
+      background: rgba(255, 255, 255, 0.95);
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.03);
     }
@@ -328,7 +347,6 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      background: #FFFFFF;
     }
     @media (max-width: 768px) {
       .hero-aside { padding: 16px; }
@@ -348,8 +366,8 @@
     .gallery-stage {
       position: relative;
       width: 100%;
-      padding-bottom: 66%; /* Ratio 3:2 */
-      background: #F3F4F6;
+      padding-bottom: 66%; 
+      background: #F3F4F6; /* Ce fond reste, il est sous les images de la galerie */
       overflow: hidden;
       touch-action: pan-y;
     }
@@ -381,7 +399,7 @@
     .btn {
       pointer-events: auto;
       border: 1px solid rgba(0,0,0,0.05);
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.9); /* Pas de fond pierre ici, c'est un bouton léger */
       color: var(--text);
       border-radius: 50%;
       width: 40px; height: 40px;
@@ -400,7 +418,7 @@
       display: flex;
       gap: 12px;
       padding: 12px;
-      background: #FFFFFF;
+      background: rgba(255, 255, 255, 0.9); /* Pas de fond pierre ici, c'est pour les miniatures */
       border-top: 1px solid var(--border);
       overflow-x: auto;
       scrollbar-width: none;
@@ -446,6 +464,7 @@
       position: relative;
       overflow: hidden;
       text-align: center;
+      text-shadow: none;
     }
     
     .cta-primary::after {
@@ -496,12 +515,15 @@
     }
 
     .activity-card {
-      background: #FFFFFF;
+      /* Surcouche de couleur semi-transparente permettant de voir le fond de pierre */
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 32px;
       box-shadow: var(--shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     }
     
     @media (max-width: 768px) {
@@ -509,6 +531,8 @@
     }
 
     .activity-card:hover {
+      /* Surcouche de couleur semi-transparente permettant de voir le fond de pierre */
+      background: var(--card-hover);
       transform: translateY(-4px);
       box-shadow: var(--shadow-hover);
     }
@@ -527,7 +551,8 @@
     .activity .icon {
       width: 48px; height: 48px;
       border-radius: 16px;
-      background: #FAFAF8;
+      /* Surcouche de couleur semi-transparente permettant de voir le fond de pierre */
+      background: rgba(250, 246, 240, 0.7);
       border: 1px solid var(--border);
       display: grid; place-items: center;
       flex-shrink: 0;
@@ -569,7 +594,10 @@
 
     /* --- BANNER LOCATION --- */
     .banner {
-      background: linear-gradient(135deg, #F9F5FF, #FFF1F2);
+      /* Surcouche de couleur semi-transparente permettant de voir le fond de pierre */
+      background: linear-gradient(135deg, rgba(249, 245, 255, 0.85), rgba(255, 241, 242, 0.85));
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(124, 58, 237, 0.1);
       border-radius: var(--radius);
       padding: 48px;
@@ -592,15 +620,24 @@
       position: absolute;
       top: -50%; left: -50%;
       width: 200%; height: 200%;
-      background: radial-gradient(circle, #FFFFFF 0%, transparent 60%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
       pointer-events: none;
       opacity: 0.6;
     }
 
     .banner-content { flex: 1; min-width: 100%; z-index: 1;}
-    .banner-content h2 { font-size: clamp(26px, 5vw, 32px); margin-bottom: 16px; color: #4C1D95; line-height: 1.2; }
-    .banner-content p { color: #5B21B6; margin-bottom: 24px; font-size: 16px; line-height: 1.6; }
+    .banner-content h2 { font-size: clamp(26px, 5vw, 32px); margin-bottom: 16px; color: #4C1D95; line-height: 1.2; text-shadow: none; }
+    .banner-content p { color: #5B21B6; margin-bottom: 24px; font-size: 16px; line-height: 1.6; text-shadow: none; }
     
+    /* Nouvelle classe pour la liste du banner */
+    .banner-details-list {
+      color: var(--text);
+      padding-left: 20px;
+      font-weight: 500;
+      font-size: 15px;
+      margin-bottom: 0;
+    }
+
     .banner-actions {
       display: flex;
       gap: 16px;
@@ -615,7 +652,8 @@
 
     .btn-outline {
       border: 2px solid #D8B4E2;
-      background: #FFFFFF;
+      /* Surcouche de couleur semi-transparente permettant de voir le fond de pierre */
+      background: rgba(255, 255, 255, 0.9);
       color: #6B46C1;
       border-radius: 16px;
       padding: 16px 24px;
@@ -628,8 +666,13 @@
       justify-content: center;
       gap: 8px;
       width: 100%;
+      text-shadow: none;
     }
-    .btn-outline:hover { background: #F3F0FF; border-color: #9D4EDD; }
+    .btn-outline:hover { 
+      /* Surcouche de couleur semi-transparente permettant de voir le fond de pierre */
+      background: #F3F0FF;
+      border-color: #9D4EDD; 
+    }
 
     .copyResult {
       position: absolute;
@@ -650,7 +693,10 @@
       padding: 40px 20px;
       text-align: center;
       border-top: 1px solid var(--border);
-      background: #F4F4F5;
+      /* Surcouche de couleur semi-transparente permettant de voir le fond de pierre */
+      background: rgba(244, 244, 245, 0.95);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       color: var(--muted);
       font-size: 15px;
     }
@@ -695,7 +741,7 @@
         <div class="kicker"><span class="dot" aria-hidden="true"></span> Sérénité · Détente · Nature</div>
 
         <h2 class="hero-title">
-          <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+          <div class="hero-title-content"> <!-- Utilisation de la nouvelle classe CSS -->
             <span class="highlight-title">La Villa Baumas</span>
             <img src="https://ea35tq5wi2i.exactdn.com/wp-content/uploads/2026/02/bouquet-de-lavande-1.jpg?strip=all&quality=90&webp=90&avif=70" alt="Bouquet de lavande" class="lavender-icon">
           </div>
@@ -858,7 +904,7 @@
             Profitez de <strong>La Villa Baumas</strong> pour une semaine d'immersion totale ou un week-end d'escapade.<br>
             Les animaux sont les bienvenus pour que toute la famille en profite !
           </p>
-          <ul style="color:var(--text); padding-left: 20px; font-weight: 500; font-size: 15px; margin-bottom:0;">
+          <ul class="banner-details-list"> <!-- Utilisation de la nouvelle classe CSS -->
             <li>Jardin privatif & espaces détente</li>
             <li>Proche des sentiers & villages de charme</li>
             <li>Design moderne et confort absolu</li>
@@ -890,6 +936,10 @@
 </footer>
 
 <script>
+  /**
+   * Liste des URLs des photos pour la galerie.
+   * Ces URLs incluent des paramètres de largeur (?im_w=...) qui seront utilisés pour générer des 'srcset'.
+   */
   const photos = [
     "https://a0.muscache.com/im/pictures/hosting/Hosting-1313574872188854127/original/f9a59360-6463-48bc-9561-b2c1d1ba44b2.jpeg?im_w=1200",
     "https://a0.muscache.com/im/pictures/hosting/Hosting-1313574872188854127/original/630322bb-d6c9-4717-96bb-ef5d29431743.jpeg?im_w=720",
@@ -897,7 +947,7 @@
     "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMxMzU3NDg3MjE4ODg1NDEyNw%3D%3D/original/35e3eacc-dd5a-451a-957e-76d39e853638.jpeg?im_w=720",
     "https://a0.muscache.com/im/pictures/hosting/Hosting-1313574872188854127/original/f9a59360-6463-48bc-9561-b2c1d1ba44b2.jpeg?im_w=480",
     "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMxMzU3NDg3MjE4ODg1NDEyNw%3D%3D/original/9cfbe0b6-e23b-4330-8f48-66b3dbdb322e.jpeg?im_w=480",
-    "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMxMzU3NDg3MjE4ODg1NDEyNw%3D%3D/original/3a9863c4-9113-4626-84d0-52b289597a41.jpeg?im_w=480"
+    "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTMxMzU3NDg3MjE4ODg0NjEyNw%3D%3D/original/3a9863c4-9113-4626-84d0-52b289597a41.jpeg?im_w=480"
   ];
 
   let index = 0;
@@ -908,66 +958,93 @@
   
   const stageImgs = [];
 
-  // Initialize Gallery
-  photos.forEach((src, i) => {
+  /**
+   * Génère l'attribut srcset pour une image, en utilisant différentes largeurs.
+   * @param {string} baseUrl - L'URL de base de l'image.
+   * @returns {string} La chaîne de caractères pour l'attribut srcset.
+   */
+  const generateSrcset = (baseUrl) => {
+    const base = baseUrl.split('?')[0]; // Enlève les paramètres existants
+    return `${base}?im_w=480 480w, ${base}?im_w=720 720w, ${base}?im_w=1200 1200w`;
+  };
+
+  /**
+   * Initialise la galerie en créant les images principales et les miniatures.
+   */
+  photos.forEach((src, imageIndex) => {
     // Images principales
     const img = document.createElement("img");
-    img.src = src;
-    img.alt = `Photo La Villa Baumas ${i+1}`;
-    if(i === 0) img.classList.add("active");
+    img.src = src; // Fallback ou plus grande taille par défaut
+    img.alt = `Photo La Villa Baumas ${imageIndex + 1}`;
+    // Ajout des attributs srcset et sizes pour l'optimisation responsive
+    img.srcset = generateSrcset(src);
+    img.sizes = "(max-width: 768px) 100vw, (max-width: 992px) 50vw, 600px"; 
+
+    if(imageIndex === 0) img.classList.add("active");
     // Insérer avant les contrôles
-    galleryStage.insertBefore(img, galleryStage.querySelector('.gallery-controls'));
+    galleryStage?.insertBefore(img, galleryStage.querySelector('.gallery-controls'));
     stageImgs.push(img);
 
     // Miniatures
-    const t = document.createElement("img");
-    t.src = src;
-    t.alt = `Miniature ${i+1}`;
-    t.className = "thumb" + (i === 0 ? " active" : "");
-    t.addEventListener("click", () => setIndex(i));
-    thumbsWrap.appendChild(t);
+    const thumbElement = document.createElement("img");
+    thumbElement.src = src; // Les miniatures peuvent utiliser la même URL, le navigateur ou CSS les redimensionnera
+    thumbElement.alt = `Miniature ${imageIndex + 1}`;
+    thumbElement.className = "thumb" + (imageIndex === 0 ? " active" : "");
+    thumbElement.addEventListener("click", () => setIndex(imageIndex));
+    thumbsWrap?.appendChild(thumbElement);
   });
 
-  function setIndex(i) {
-    index = (i + photos.length) % photos.length;
-    stageImgs.forEach((img, k) => img.classList.toggle("active", k === index));
+  /**
+   * Met à jour l'index de la photo affichée et met en évidence la miniature correspondante.
+   * @param {number} newIndex - Le nouvel index de la photo à afficher.
+   */
+  function setIndex(newIndex) {
+    index = (newIndex + photos.length) % photos.length;
+    stageImgs.forEach((img, currentImageIndex) => img.classList.toggle("active", currentImageIndex === index));
     
-    const thumbsList = [...thumbsWrap.querySelectorAll(".thumb")];
-    thumbsList.forEach((t, k) => t.classList.toggle("active", k === index));
+    const thumbsList = [...(thumbsWrap?.querySelectorAll(".thumb") || [])];
+    thumbsList.forEach((thumbElement, currentThumbIndex) => thumbElement.classList.toggle("active", currentThumbIndex === index));
     
     // Auto-scroll pour les miniatures sur mobile
     const activeThumb = thumbsList[index];
-    if(activeThumb) {
+    if(activeThumb && thumbsWrap) {
       const scrollLeft = activeThumb.offsetLeft - (thumbsWrap.clientWidth / 2) + (activeThumb.clientWidth / 2);
       thumbsWrap.scrollTo({ left: scrollLeft, behavior: 'smooth' });
     }
   }
 
+  /**
+   * Affiche la photo suivante dans la galerie.
+   */
   function next() { setIndex(index + 1); }
+
+  /**
+   * Affiche la photo précédente dans la galerie.
+   */
   function prev() { setIndex(index - 1); }
 
-  prevBtn.addEventListener("click", prev);
-  nextBtn.addEventListener("click", next);
+  prevBtn?.addEventListener("click", prev);
+  nextBtn?.addEventListener("click", next);
 
-  // Auto-play
+  // Auto-play de la galerie
   let timer = setInterval(next, 5000);
-  galleryStage.addEventListener("mouseenter", () => clearInterval(timer));
-  galleryStage.addEventListener("mouseleave", () => { timer = setInterval(next, 5000); });
+  galleryStage?.addEventListener("mouseenter", () => clearInterval(timer));
+  galleryStage?.addEventListener("mouseleave", () => { timer = setInterval(next, 5000); });
   
-  // Support du balayage (swipe) tactile sur mobile
+  // Support du balayage (swipe) tactile sur mobile pour la galerie
   let touchStartX = 0;
   let touchEndX = 0;
   
-  galleryStage.addEventListener('touchstart', e => {
+  galleryStage?.addEventListener('touchstart', e => {
     touchStartX = e.changedTouches[0].screenX;
-    clearInterval(timer);
+    clearInterval(timer); // Arrête le diaporama pendant le swipe
   }, {passive: true});
   
-  galleryStage.addEventListener('touchend', e => {
+  galleryStage?.addEventListener('touchend', e => {
     touchEndX = e.changedTouches[0].screenX;
     if (touchStartX - touchEndX > 50) next(); // Swipe gauche
     if (touchEndX - touchStartX > 50) prev(); // Swipe droite
-    timer = setInterval(next, 5000);
+    timer = setInterval(next, 5000); // Redémarre le diaporama après le swipe
   }, {passive: true});
 
   // Gestion du bouton copier le lien
@@ -975,13 +1052,13 @@
   const copyBtn = document.getElementById("copyLinkBtn");
   const copyResult = document.getElementById("copyResult");
 
-  copyBtn.addEventListener("click", async () => {
+  copyBtn?.addEventListener("click", async () => {
     try {
       await navigator.clipboard.writeText(airbnbLink);
-      copyResult.classList.add("show");
-      setTimeout(() => copyResult.classList.remove("show"), 2000);
+      copyResult?.classList.add("show");
+      setTimeout(() => copyResult?.classList.remove("show"), 2000);
     } catch(e) {
-      alert("Copie impossible automatiquement. Copiez manuellement :\n" + airbnbLink);
+      alert("Copie impossible automatiquement. Veuillez copier manuellement le lien :\n" + airbnbLink);
     }
   });
 </script>
