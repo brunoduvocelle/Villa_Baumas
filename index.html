@@ -4,440 +4,631 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>La Villa Baumas – St Restitut (Drôme)</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+  
   <style>
-    :root{
-      --bg:#070a14;
-      --card:rgba(255,255,255,.06);
-      --muted:#a9b7da;
-      --text:#ecf2ff;
+    :root {
+      /* Thème Clair "Provence Premium" pour remplacer l'ancien design sombre */
+      --bg: #FAFAF8; /* Blanc cassé très subtil, effet minéral/pierre */
+      --card: #FFFFFF;
+      --card-hover: #F8F7F5;
+      --text: #2D3748; /* Anthracite élégant */
+      --muted: #718096; /* Gris doux */
 
-      --accent:#8b5cf6;
-      --accent2:#34d399;
+      --accent-1: #D4A373; /* Or / Terre cuite */
+      --accent-2: #7C3AED; /* Violet Provence (Lavande) */
+      --accent-3: #5B8266; /* Vert Olivier */
 
-      --border:rgba(255,255,255,.12);
-      --shadow: 0 24px 70px rgba(0,0,0,.42);
-      --radius:20px;
-
-      --glass: rgba(255,255,255,.04);
-      --glass2: rgba(255,255,255,.03);
+      --border: rgba(0, 0, 0, 0.06);
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+      --shadow-hover: 0 25px 50px rgba(0, 0, 0, 0.08);
+      --radius: 24px;
     }
 
-    *{ box-sizing:border-box; }
-    body{
-      margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--text);
-      line-height:1.5;
-
-      background:
-        radial-gradient(1200px 600px at 15% -10%, rgba(139,92,246,.35), transparent 60%),
-        radial-gradient(1100px 600px at 85% 10%, rgba(52,211,153,.20), transparent 55%),
-        radial-gradient(800px 500px at 50% 115%, rgba(255,255,255,.06), transparent 55%),
-        var(--bg);
+    * { box-sizing: border-box; }
+    
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      background-color: var(--bg);
+      /* Halos lumineux subtils pour donner de la vie au fond clair */
+      background-image:
+        radial-gradient(800px circle at 0% 0%, rgba(124, 58, 237, 0.03), transparent),
+        radial-gradient(800px circle at 100% 20%, rgba(212, 163, 115, 0.05), transparent),
+        radial-gradient(800px circle at 50% 100%, rgba(91, 130, 102, 0.04), transparent);
+      background-attachment: fixed;
+      overflow-x: hidden;
     }
 
-    header{
-      padding: 22px 18px 14px;
+    h1, h2, h3 {
+      font-family: 'Playfair Display', serif;
+      margin: 0;
+      font-weight: 800;
+    }
+
+    /* --- HEADER --- */
+    header {
+      padding: 16px 20px;
       position: sticky;
       top: 0;
-      backdrop-filter: blur(12px);
-      background: rgba(7,10,20,.68);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      z-index: 10;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(250, 250, 248, 0.85);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
     }
 
-    .container{
-      width:min(1120px, 100%);
-      margin:0 auto;
+    .container {
+      width: min(1200px, 100%);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    header .container { padding: 0; }
+
+    .topbar {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
 
-    .topbar{
-      display:flex;
-      gap:16px;
-      align-items:center;
-      justify-content:space-between;
-      flex-wrap:wrap;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-width:280px;
+    .logo {
+      width: 48px; 
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent-1), #B88655);
+      display: grid;
+      place-items: center;
+      box-shadow: 0 8px 20px rgba(212, 163, 115, 0.25);
+    }
+    
+    .logo svg {
+      width: 24px;
+      height: 24px;
+      color: white;
     }
 
-    .logo{
-      width:44px; height:44px;
-      border-radius:16px;
-      background: linear-gradient(135deg, rgba(139,92,246,.95), rgba(52,211,153,.72));
-      box-shadow: 0 18px 40px rgba(139,92,246,.22);
-      border:1px solid rgba(255,255,255,.16);
+    .brand h1 {
+      font-size: 22px;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    
+    .brand h1 .highlight-small {
+      background: linear-gradient(135deg, var(--accent-2), var(--accent-1));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-style: italic;
+      padding-right: 2px;
     }
 
-    .brand h1{
-      margin:0;
-      font-size: 16px;
-      letter-spacing:.2px;
-      font-weight: 900;
-    }
-
-    .brand p{
-      margin:2px 0 0;
+    .brand p {
+      margin: 2px 0 0;
       color: var(--muted);
       font-size: 13px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
     }
 
-    nav a{
+    nav {
+      display: flex;
+      gap: 24px;
+    }
+
+    nav a {
       color: var(--muted);
-      text-decoration:none;
-      margin-left:16px;
-      font-weight: 800;
+      text-decoration: none;
+      font-weight: 600;
       font-size: 14px;
-      opacity:.95;
+      transition: color 0.2s ease;
     }
-    nav a:hover{ color: var(--text); }
+    nav a:hover { color: var(--accent-2); }
 
-    main{ padding-bottom: 34px; }
+    @media (max-width: 768px) {
+      .topbar { flex-direction: column; align-items: flex-start; gap: 16px; }
+      nav { width: 100%; justify-content: space-between; overflow-x: auto; padding-bottom: 8px;}
+    }
 
-    .hero{ padding: 26px 18px 10px; }
+    /* --- LAYOUT --- */
+    main { padding-bottom: 60px; }
+    .hero { padding: 40px 0 20px; }
 
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.12fr .88fr;
-      gap: 18px;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 32px;
       align-items: stretch;
     }
-    @media (max-width: 900px){
-      .hero-grid{ grid-template-columns: 1fr; }
+    @media (max-width: 992px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 24px; }
     }
 
-    .card{
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+    .card {
+      background: var(--card);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
 
-    .hero-main{
-      padding: 18px;
-      overflow:hidden;
-      position:relative;
-      min-height: 520px;
+    /* --- HERO MAIN --- */
+    .hero-main {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #FFFFFF;
+    }
+    
+    @media (max-width: 768px) {
+      .hero-main { padding: 32px 24px; }
     }
 
-    .kicker{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      padding: 8px 12px;
+    .kicker {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 6px 14px;
       border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-weight: 900;
-      font-size: 13px;
-      letter-spacing:.2px;
+      border: 1px solid var(--border);
+      background: #FAFAF8;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      align-self: flex-start;
+      margin-bottom: 32px;
     }
 
-    .dot{
-      width:10px; height:10px; border-radius:50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px rgba(139,92,246,.16);
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent-1);
+      box-shadow: 0 0 10px rgba(212, 163, 115, 0.5);
     }
 
-    .hero-title{
-      margin: 14px 0 10px;
-      font-size: clamp(28px, 3.2vw, 44px);
-      line-height:1.05;
-      letter-spacing:-.8px;
-      font-weight: 950;
+    /* HIERARCHIE DU TITRE FORTEMENT ACCENTUÉE */
+    .hero-title {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 28px;
     }
 
-    .hero-sub{
-      margin: 0 0 16px;
-      color: var(--muted);
-      font-size: 16px;
-      max-width: 68ch;
+    .highlight-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 6.5vw, 84px);
+      font-weight: 800;
+      line-height: 1.05;
+      /* Violet profond et riche pour un impact massif */
+      background: linear-gradient(135deg, #4C1D95 0%, #7C3AED 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+      padding-bottom: 4px;
+      margin-left: -2px; /* Ajustement d'alignement optique */
     }
 
-    .badges{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top: 14px;
+    .sub-title {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 400;
+      color: #718096; /* Plus discret pour laisser la vedette au titre principal */
+      letter-spacing: -0.5px;
     }
 
-    .badge{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      padding: 12px 12px;
+    .hero-sub {
+      color: #4A5568;
+      font-size: 18px;
+      max-width: 90%;
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .badges {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 640px) {
+      .badges { grid-template-columns: 1fr 1fr; }
+    }
+
+    .badge {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding: 16px;
+      border-radius: 20px;
+      background: #FAFAF8;
+      border: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+    .badge:hover { 
+      background: #FFFFFF;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+    }
+
+    .badge .icon-wrap {
+      width: 44px; height: 44px;
+      border-radius: 14px;
+      background: #F3F0FF;
+      color: var(--accent-2);
+      display: grid; place-items: center;
+      flex-shrink: 0;
+    }
+    
+    .badge-content { display: flex; flex-direction: column; gap: 2px; }
+    .badge strong { font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif; color: var(--text); }
+    .badge span { font-size: 13px; color: var(--muted); line-height: 1.4; }
+
+    /* --- GALLERY --- */
+    .hero-aside {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      background: #FFFFFF;
+    }
+
+    .gallery {
+      width: 100%;
       border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.035);
-      min-width: 240px;
-    }
-
-    .badge svg{ flex:0 0 auto; opacity:.96; }
-    .badge strong{ font-size:14px; }
-    .badge span{ font-size: 13px; color: var(--muted); }
-
-    .hero-aside{
-      padding: 18px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      min-height: 520px;
-    }
-
-    .gallery{
-      width:100%;
-      border-radius: 16px;
-      overflow:hidden;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.2);
+      overflow: hidden;
+      border: 1px solid var(--border);
       position: relative;
       flex: 1;
-      min-height: 380px;
+      display: flex;
+      flex-direction: column;
     }
 
-    .gallery-stage{
-      position:relative;
-      height: 100%;
-      aspect-ratio: 16/10;
-      background: rgba(255,255,255,.03);
-      overflow:hidden;
+    .gallery-stage {
+      position: relative;
+      width: 100%;
+      padding-bottom: 66%; /* Ratio 3:2 */
+      background: #F3F4F6;
+      overflow: hidden;
+      touch-action: pan-y;
     }
 
-    .gallery-stage img{
-      width:100%; height:100%;
+    .gallery-stage img {
+      width: 100%; height: 100%;
       object-fit: cover;
-      display:block;
-      position:absolute;
-      inset:0;
-      opacity:0;
-      transform: scale(1.02);
-      transition: opacity .35s ease, transform .45s ease;
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transform: scale(1.05);
+      transition: opacity 0.5s ease, transform 0.6s ease;
     }
-    .gallery-stage img.active{
-      opacity:1;
+    .gallery-stage img.active {
+      opacity: 1;
       transform: scale(1);
     }
 
-    .gallery-controls{
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 0 10px;
-      pointer-events:none;
+    .gallery-controls {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      pointer-events: none;
     }
 
-    .btn{
-      pointer-events:auto;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(8,12,22,.45);
+    .btn {
+      pointer-events: auto;
+      border: 1px solid rgba(0,0,0,0.05);
+      background: rgba(255,255,255,0.9);
       color: var(--text);
-      border-radius: 14px;
-      width:42px; height:42px;
-      display:grid;
-      place-items:center;
-      cursor:pointer;
-      backdrop-filter: blur(10px);
-      transition: transform .1s ease, background .2s ease, border-color .2s ease;
-      user-select:none;
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(8,12,22,.65); border-color: rgba(139,92,246,.45); }
-    .btn:active{ transform: translateY(0px); }
-
-    .thumbs{
-      display:flex;
-      gap:10px;
-      padding: 12px;
-      border-top: 1px solid rgba(255,255,255,.08);
-      overflow:auto;
-      background: rgba(255,255,255,.02);
-    }
-
-    .thumb{
-      width:78px; height:54px;
-      border-radius:12px;
-      object-fit:cover;
-      border: 1px solid rgba(255,255,255,.12);
-      opacity:.80;
-      cursor:pointer;
-      transition: opacity .15s ease, transform .15s ease, border-color .15s ease;
-      flex:0 0 auto;
-    }
-    .thumb:hover{ opacity:1; transform: translateY(-1px); }
-    .thumb.active{
-      opacity:1;
-      border-color: rgba(139,92,246,.85);
-      box-shadow: 0 0 0 4px rgba(139,92,246,.14);
-    }
-
-    /* Bouton Airbnb (celui que tu as entouré en rouge) */
-    .cta-primary-wrap{
-      margin-top: 12px;
-    }
-
-    .cta-primary{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      width:100%;
-      text-decoration:none;
-      padding: 14px 16px;
-      border-radius: 18px;
-
-      background: linear-gradient(135deg, rgba(139,92,246,.98), rgba(139,92,246,.60));
-      border: 1px solid rgba(139,92,246,.65);
-
-      color:white;
-      font-weight: 950;
-      letter-spacing:.2px;
-
-      transition: transform .1s ease, filter .2s ease;
-      box-shadow: 0 14px 50px rgba(139,92,246,.18);
-    }
-    .cta-primary:hover{ transform: translateY(-1px); filter: brightness(1.03); }
-    .cta-primary:active{ transform: translateY(0px); }
-
-    .cta-hint{
-      color: var(--muted);
-      font-size: 13px;
-      margin-top: 10px;
-    }
-
-    .section{
-      padding: 12px 18px 40px;
-    }
-
-    .section h2{
-      margin: 18px 0 10px;
+      border-radius: 50%;
+      width: 44px; height: 44px;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
       font-size: 20px;
-      letter-spacing: -.2px;
-      font-weight: 950;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .btn:hover { background: #FFFFFF; transform: scale(1.05); }
+    .btn:active { transform: scale(0.95); }
+
+    .thumbs {
+      display: flex;
+      gap: 12px;
+      padding: 16px;
+      background: #FFFFFF;
+      border-top: 1px solid var(--border);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .thumbs::-webkit-scrollbar { display: none; }
+
+    .thumb {
+      width: 80px; height: 60px;
+      border-radius: 8px;
+      object-fit: cover;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+      border: 2px solid transparent;
+    }
+    .thumb:hover { opacity: 0.8; }
+    .thumb.active {
+      opacity: 1;
+      border-color: var(--accent-2);
+      transform: scale(1.05);
     }
 
-    .grid-2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    @media (max-width: 850px){
-      .grid-2{ grid-template-columns: 1fr; }
-    }
+    /* --- BUTTONS --- */
+    .cta-primary-wrap { margin-top: 8px; }
 
-    .list{ display:flex; flex-direction:column; gap:10px; }
-
-    .activity{
-      padding: 14px;
+    .cta-primary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-decoration: none;
+      padding: 18px 24px;
       border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.03);
-      display:flex;
-      gap:12px;
-      align-items:flex-start;
+      background: linear-gradient(135deg, #7C3AED, #9D4EDD);
+      color: white;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.25);
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .cta-primary::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
     }
 
-    .activity .icon{
-      width:40px; height:40px;
-      border-radius: 16px;
-      background: rgba(139,92,246,.16);
-      border: 1px solid rgba(139,92,246,.35);
-      display:grid; place-items:center;
-      flex:0 0 auto;
+    .cta-primary:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 15px 35px rgba(124, 58, 237, 0.35);
+    }
+    .cta-primary:hover::after { left: 100%; }
+    .cta-primary:active { transform: translateY(0px); }
+
+    /* --- SECTIONS --- */
+    .section { padding: 60px 0 40px; }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
     }
 
-    .activity h3{
-      margin:0 0 4px;
-      font-size: 15px;
-      font-weight: 950;
-    }
-
-    .activity p{
-      margin:0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .activity a{
-      display:inline-flex;
-      margin-top: 8px;
-      color: #e6eeff;
-      text-decoration:none;
-      font-weight: 950;
-      font-size: 13px;
-      border-bottom: 1px dashed rgba(230,238,255,.55);
-    }
-    .activity a:hover{
-      border-bottom-style: solid;
-      color:white;
-    }
-
-    footer{
-      padding: 26px 18px 34px;
-      color: var(--muted);
-      text-align:center;
-      border-top: 1px solid rgba(255,255,255,.08);
-      background: rgba(7,10,20,.55);
-    }
-    .small{ font-size: 13px; }
-
-    /* bouton copier lien */
-    button.copyBtn{
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.04);
+    .section-header h2 {
+      font-size: clamp(32px, 4vw, 40px);
+      margin-bottom: 16px;
       color: var(--text);
-      border-radius: 16px;
-      padding: 10px 12px;
-      font-weight: 950;
-      cursor:pointer;
-      transition: transform .1s ease, background .2s ease;
-      white-space: nowrap;
     }
-    button.copyBtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); }
-    button.copyBtn:active{ transform: translateY(0); }
-    .copyResult{
-      display:none;
-      margin-top:10px;
-      color: #b7f7d1;
-      font-weight: 900;
-      font-size: 13px;
+
+    .section-header p {
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+    @media (max-width: 850px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .activity-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .activity-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .activity-list { display: flex; flex-direction: column; gap: 24px; }
+
+    .activity {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .activity .icon {
+      width: 54px; height: 54px;
+      border-radius: 16px;
+      background: #FAFAF8;
+      border: 1px solid var(--border);
+      display: grid; place-items: center;
+      flex-shrink: 0;
+      font-size: 24px;
+    }
+
+    .activity h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 6px;
+      color: var(--text);
+    }
+
+    .activity p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .activity a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      color: var(--accent-1); /* Terre cuite / Or */
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      transition: color 0.2s ease;
+    }
+    .activity a:hover { color: #B88655; }
+    .activity a::after {
+      content: '→';
+      transition: transform 0.2s ease;
+    }
+    .activity a:hover::after { transform: translateX(4px); }
+
+    /* --- BANNER LOCATION --- */
+    .banner {
+      background: linear-gradient(135deg, #F9F5FF, #FFF1F2);
+      border: 1px solid rgba(124, 58, 237, 0.1);
+      border-radius: var(--radius);
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(124, 58, 237, 0.05);
+    }
+    
+    .banner::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, #FFFFFF 0%, transparent 60%);
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .banner-content { flex: 1; min-width: 300px; z-index: 1;}
+    .banner-content h2 { font-size: 32px; margin-bottom: 16px; color: #4C1D95; }
+    .banner-content p { color: #5B21B6; margin-bottom: 24px; font-size: 18px; }
+    
+    .banner-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      z-index: 1;
+    }
+
+    .btn-outline {
+      border: 2px solid #D8B4E2;
+      background: #FFFFFF;
+      color: #6B46C1;
+      border-radius: 16px;
+      padding: 16px 24px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-outline:hover { background: #F3F0FF; border-color: #9D4EDD; }
+
+    .copyResult {
+      position: absolute;
+      bottom: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--accent-3); /* Vert */
+      font-weight: 700;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .copyResult.show { opacity: 1; }
+
+    /* --- FOOTER --- */
+    footer {
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      background: #F4F4F5;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    
+    footer .highlight-text {
+      color: var(--text);
+      font-weight: 700;
     }
   </style>
 </head>
 
 <body>
 <header>
-  <div class="container">
-    <div class="topbar">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <h1>La Villa Baumas · St Restitut (Drôme)</h1>
-          <p>Premium séjour · randonnées & activités à proximité</p>
-        </div>
+  <div class="container topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        </svg>
       </div>
-      <nav aria-label="Navigation principale">
-        <a href="#presentation">Présentation</a>
-        <a href="#galerie">Photos</a>
-        <a href="#activites">Randonnée & activités</a>
-        <a href="#location">Location</a>
-      </nav>
+      <div>
+        <h1><span class="highlight-small">La Villa Baumas</span> · St Restitut</h1>
+        <p>Premium séjour · Drôme provençale</p>
+      </div>
     </div>
+    <nav aria-label="Navigation principale">
+      <a href="#presentation">Présentation</a>
+      <a href="#galerie">Photos</a>
+      <a href="#activites">Activités</a>
+      <a href="#location">Location</a>
+    </nav>
   </div>
 </header>
 
 <main>
-  <section class="hero">
+  <!-- Section Présentation & Galerie -->
+  <section class="hero" id="presentation">
     <div class="container hero-grid">
-      <div class="card hero-main" id="presentation">
+      
+      <!-- Infos -->
+      <div class="card hero-main">
         <div class="kicker"><span class="dot" aria-hidden="true"></span> Sérénité · Détente · Nature</div>
 
-        <h2 class="hero-title">La Villa Baumas, votre adresse d’évasion en Drôme</h2>
+        <!-- C'EST ICI QUE LE TITRE A ÉTÉ FORTEMENT MIS EN VALEUR -->
+        <h2 class="hero-title">
+          <span class="highlight-title">La Villa Baumas</span>
+          <span class="sub-title">Votre adresse d’évasion en Drôme</span>
+        </h2>
 
         <p class="hero-sub">
           Une atmosphère chaleureuse et raffinée pour profiter pleinement de votre séjour à
@@ -446,33 +637,38 @@
 
         <div class="badges" role="list">
           <div class="badge" role="listitem">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M7 11l3 3 7-7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            <div>
+            <div class="icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div class="badge-content">
               <strong>Semaine ou week-end</strong>
               <span>Réservez selon votre rythme</span>
             </div>
           </div>
 
           <div class="badge" role="listitem">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 22s8-4 8-10a8 8 0 1 0-16 0c0 6 8 10 8 10Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
-              <path d="M9.5 12h.01M14.5 12h.01" stroke="white" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-            <div>
+            <div class="icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linejoin="round" stroke-width="2" d="M12 22s8-4 8-10a8 8 0 1 0-16 0c0 6 8 10 8 10Z"/>
+                <path stroke-linecap="round" stroke-width="3" d="M9.5 12h.01M14.5 12h.01"/>
+              </svg>
+            </div>
+            <div class="badge-content">
               <strong>Animaux acceptés</strong>
               <span>Votre compagnon est le bienvenu</span>
             </div>
           </div>
 
           <div class="badge" role="listitem">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
-              <path d="M12 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="white" stroke-width="2"/>
-            </svg>
-            <div>
+            <div class="icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linejoin="round" stroke-width="2" d="M21 10c0 6-9 12-9 12S3 16 3 10a9 9 0 0 1 18 0Z"/>
+                <path stroke-width="2" d="M12 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+              </svg>
+            </div>
+            <div class="badge-content">
               <strong>Proche des sentiers</strong>
               <span>Randonnées & activités à proximité</span>
             </div>
@@ -480,179 +676,133 @@
         </div>
       </div>
 
+      <!-- Galerie -->
       <aside class="card hero-aside" id="galerie">
         <div class="gallery" aria-label="Galerie photos La Villa Baumas">
           <div class="gallery-stage">
+            <!-- Contrôles -->
             <div class="gallery-controls">
-              <button class="btn" id="prevBtn" type="button" aria-label="Photo précédente">‹</button>
-              <button class="btn" id="nextBtn" type="button" aria-label="Photo suivante">›</button>
+              <button class="btn" id="prevBtn" type="button" aria-label="Photo précédente">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button class="btn" id="nextBtn" type="button" aria-label="Photo suivante">
+                <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </button>
             </div>
           </div>
           <div class="thumbs" id="thumbs"></div>
         </div>
 
-        <!-- Bouton Airbnb (lien qui évite les paramètres 404) -->
         <div class="cta-primary-wrap">
-          <a
-            class="cta-primary"
-            id="reserveBtn"
-            href="https://www.airbnb.fr/rooms/1313574872188854127"
-            target="_blank"
-            rel="noopener"
-            aria-label="Réserver sur Airbnb"
-          >
-            Réserver maintenant
+          <a class="cta-primary" id="reserveBtn" href="https://www.airbnb.fr/rooms/1313574872188854127" target="_blank" rel="noopener" aria-label="Réserver sur Airbnb">
+            Vérifier les disponibilités
           </a>
-          <div class="cta-hint">
-            
-          </div>
         </div>
       </aside>
     </div>
   </section>
 
+  <!-- Section Activités -->
   <section class="section" id="activites">
     <div class="container">
-      <h2>Randonnée & activités autour de St Restitut</h2>
+      <div class="section-header">
+        <h2>Randonnées & Activités</h2>
+        <p>Découvrez les paysages enchanteurs de la Drôme provençale avec des itinéraires pour tous les niveaux autour de St Restitut.</p>
+      </div>
 
-      <p style="margin:0; color:var(--muted); max-width: 88ch;">
-        Voici des liens utiles pour trouver des parcours et idées d’activités autour de St Restitut.
-      </p>
-
-      <div class="grid-2" style="margin-top:14px;">
-        <div class="card" style="padding:14px;">
-          <div class="list">
+      <div class="grid-2">
+        <div class="activity-card">
+          <div class="activity-list">
             <div class="activity">
               <div class="icon" aria-hidden="true">🥾</div>
               <div>
                 <h3>Itinéraire en Drôme provençale</h3>
-                <p>Une balade à découvrir (voir l’itinéraire).</p>
-                <a href="https://www.dromeprovencale.fr/itineraire/de-silhouettes-en-silhouettes-balade-des-carriers-a-pied/" target="_blank" rel="noopener">
-                  Voir l’itinéraire
-                </a>
+                <p>Balade des carriers à pied. Une boucle magnifique à découvrir absolument.</p>
+                <a href="https://www.dromeprovencale.fr/itineraire/de-silhouettes-en-silhouettes-balade-des-carriers-a-pied/" target="_blank" rel="noopener">Voir l’itinéraire</a>
               </div>
             </div>
 
             <div class="activity">
               <div class="icon" aria-hidden="true">🗺️</div>
               <div>
-                <h3>Balades recommandées (site mairie)</h3>
-                <p>Idées et suggestions locales.</p>
-                <a href="https://saintrestitut-mairie.fr/balades/" target="_blank" rel="noopener">
-                  Ouvrir les balades
-                </a>
+                <h3>Balades recommandées</h3>
+                <p>Idées et suggestions locales directement recensées par la mairie.</p>
+                <a href="https://saintrestitut-mairie.fr/balades/" target="_blank" rel="noopener">Ouvrir les balades</a>
               </div>
             </div>
 
             <div class="activity">
               <div class="icon" aria-hidden="true">📍</div>
               <div>
-                <h3>Randonnées (fiche Visorando)</h3>
-                <p>Parcours et détails pratiques.</p>
-                <a href="https://www.visorando.com/randonnee-saint-restitut.html" target="_blank" rel="noopener">
-                  Voir sur Visorando
-                </a>
-              </div>
-            </div>
-
-            <div class="activity">
-              <div class="icon" aria-hidden="true">🏞️</div>
-              <div>
-                <h3>Activités outdoor (bonus)</h3>
-                <p>Recherche complémentaire de randonnées proches.</p>
-                <a href="https://www.openstreetmap.org/search?query=St%20Restitut%2C%20France" target="_blank" rel="noopener">
-                  Cartes OpenStreetMap
-                </a>
+                <h3>Randonnées Visorando</h3>
+                <p>Parcours complets, tracés GPS et détails pratiques pour préparer vos sorties.</p>
+                <a href="https://www.visorando.com/randonnee-saint-restitut.html" target="_blank" rel="noopener">Voir sur Visorando</a>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="card" style="padding:14px;">
-          <div class="list">
+        <div class="activity-card">
+          <div class="activity-list">
             <div class="activity">
-              <div class="icon" aria-hidden="true">🌄</div>
+              <div class="icon" aria-hidden="true">🏞️</div>
               <div>
-                <h3>Sorties & points de découverte</h3>
-                <p>Un bon complément pour varier les plaisirs.</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=randonn%C3%A9e%20pr%C3%A8s%20de%20St%20Restitut%20Dr%C3%B4me" target="_blank" rel="noopener">
-                  Randonnées sur Google Maps
-                </a>
+                <h3>Activités Outdoor</h3>
+                <p>Cartes détaillées pour repérer les sentiers cachés et points de vue.</p>
+                <a href="https://www.openstreetmap.org/search?query=St%20Restitut%2C%20France" target="_blank" rel="noopener">Cartes OpenStreetMap</a>
               </div>
             </div>
 
             <div class="activity">
               <div class="icon" aria-hidden="true">🚴</div>
               <div>
-                <h3>Balades (incluant vélo)</h3>
-                <p>Combinez chemins et points de vue.</p>
-                <a href="https://www.komoot.com/fr-fr" target="_blank" rel="noopener">
-                  Recherche sur Komoot
-                </a>
+                <h3>Cyclisme & Marche</h3>
+                <p>Combinez chemins et routes pittoresques avec la communauté Komoot.</p>
+                <a href="https://www.komoot.com/fr-fr" target="_blank" rel="noopener">Recherche sur Komoot</a>
               </div>
             </div>
 
             <div class="activity">
-              <div class="icon" aria-hidden="true">⛺</div>
+              <div class="icon" aria-hidden="true">☀️</div>
               <div>
-                <h3>Préparer vos sorties (météo)</h3>
-                <p>Conseil : vérifiez les conditions avant le départ.</p>
-                <a href="https://www.meteoblue.com/fr/meteo/semaine/saint-restitut_france_2977187" target="_blank" rel="noopener">
-                  Météo (recherche)
-                </a>
+                <h3>Préparer vos sorties</h3>
+                <p>Vérifiez toujours la météo locale avant de partir à l'aventure.</p>
+                <a href="https://www.meteoblue.com/fr/meteo/semaine/saint-restitut_france_2977187" target="_blank" rel="noopener">Consulter la météo</a>
               </div>
             </div>
           </div>
-
-          <p style="margin:12px 4px 0; color: var(--muted); font-size:13px;">
-            
-          </p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Section Location -->
   <section class="section" id="location">
     <div class="container">
-      <h2>Location premium : semaine ou week-end (Airbnb)</h2>
-
-      <div class="card" style="padding:16px;">
-        <div style="display:grid; grid-template-columns: 1.15fr .85fr; gap:14px; align-items:start;">
-          <div>
-            <p style="margin:0; color:var(--muted);">
-              Vous pouvez louer <strong>La Villa Baumas</strong> :
-              <strong>• à la semaine</strong> pour profiter pleinement,
-              ou <strong>• pour un week-end</strong> pour une escapade.
-            </p>
-
-            <p style="margin:12px 0 0; color:var(--muted);">
-              Les <strong>animaux sont acceptés</strong>, pour que votre séjour reste simple et agréable.
-            </p>
-
-            <div style="margin-top:14px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
-              <a class="cta-primary" style="padding: 12px 14px; border-radius:16px; flex:1; min-width: 240px;"
-                 href="https://www.airbnb.fr/rooms/1313574872188854127"
-                 target="_blank" rel="noopener">
-                Ouvrir l’annonce Airbnb
-              </a>
-
-              <button class="copyBtn" id="copyLinkBtn" type="button">Copier le lien</button>
-            </div>
-
-            <div class="copyResult" id="copyResult">Lien copié ✅</div>
-          </div>
-
-          <div style="border-left:1px solid rgba(255,255,255,.10); padding-left:14px;">
-            <h3 style="margin-top:0; font-size:16px; font-weight:950;">Préparez votre séjour</h3>
-            <ul style="margin:8px 0 0; color: var(--muted); padding-left:18px;">
-              <li>Randonnées près de St Restitut</li>
-              <li>Escapades : villages, points de vue</li>
-              <li>Réservation : semaine ou week-end</li>
-              <li>Animaux acceptés</li>
-            </ul>
-            <p style="margin:12px 0 0; color:var(--muted); font-size:13px;">
-              
-            </p>
+      <div class="banner">
+        <div class="banner-content">
+          <h2>Location premium pour votre séjour</h2>
+          <p>
+            Profitez de <strong>La Villa Baumas</strong> pour une semaine d'immersion totale ou un week-end d'escapade.<br>
+            Les animaux sont les bienvenus pour que toute la famille en profite !
+          </p>
+          <ul style="color:var(--text); padding-left: 20px; font-weight: 500; font-size: 15px; margin-bottom:0;">
+            <li>Jardin privatif & espaces détente</li>
+            <li>Proche des sentiers & villages de charme</li>
+            <li>Design moderne et confort absolu</li>
+          </ul>
+        </div>
+        
+        <div class="banner-actions">
+          <a class="cta-primary" href="https://www.airbnb.fr/rooms/1313574872188854127" target="_blank" rel="noopener" style="min-width: 200px;">
+            Réserver sur Airbnb
+          </a>
+          <div style="position: relative;">
+            <button class="btn-outline" id="copyLinkBtn" type="button">
+              <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              Copier le lien
+            </button>
+            <span class="copyResult" id="copyResult">Lien copié ✅</span>
           </div>
         </div>
       </div>
@@ -661,8 +811,9 @@
 </main>
 
 <footer>
-  <div class="container small">
-    La Villa Baumas · St Restitut (Drôme) — Site Réalisé par "Duvocelle in your life".
+  <div class="container">
+    <p>© <span class="highlight-text">La Villa Baumas</span> · St Restitut (Drôme)</p>
+    <p style="margin-top: 8px;">Site réalisé par "Duvocelle in your life"</p>
   </div>
 </footer>
 
@@ -681,19 +832,22 @@
   const thumbsWrap = document.getElementById("thumbs");
   const prevBtn = document.getElementById("prevBtn");
   const nextBtn = document.getElementById("nextBtn");
-
   const galleryStage = document.querySelector(".gallery-stage");
+  
   const stageImgs = [];
 
-  // Inject images
+  // Initialize Gallery
   photos.forEach((src, i) => {
+    // Images principales
     const img = document.createElement("img");
     img.src = src;
     img.alt = `Photo La Villa Baumas ${i+1}`;
     if(i === 0) img.classList.add("active");
-    galleryStage.appendChild(img);
+    // Insérer avant les contrôles
+    galleryStage.insertBefore(img, galleryStage.querySelector('.gallery-controls'));
     stageImgs.push(img);
 
+    // Miniatures
     const t = document.createElement("img");
     t.src = src;
     t.alt = `Miniature ${i+1}`;
@@ -702,34 +856,59 @@
     thumbsWrap.appendChild(t);
   });
 
-  function setIndex(i){
+  function setIndex(i) {
     index = (i + photos.length) % photos.length;
     stageImgs.forEach((img, k) => img.classList.toggle("active", k === index));
-    [...thumbsWrap.querySelectorAll(".thumb")].forEach((t, k) => t.classList.toggle("active", k === index));
+    
+    const thumbsList = [...thumbsWrap.querySelectorAll(".thumb")];
+    thumbsList.forEach((t, k) => t.classList.toggle("active", k === index));
+    
+    // Auto-scroll pour les miniatures sur mobile
+    const activeThumb = thumbsList[index];
+    if(activeThumb) {
+      const scrollLeft = activeThumb.offsetLeft - (thumbsWrap.clientWidth / 2) + (activeThumb.clientWidth / 2);
+      thumbsWrap.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+    }
   }
 
-  function next(){ setIndex(index + 1); }
-  function prev(){ setIndex(index - 1); }
+  function next() { setIndex(index + 1); }
+  function prev() { setIndex(index - 1); }
 
   prevBtn.addEventListener("click", prev);
   nextBtn.addEventListener("click", next);
 
   // Auto-play
-  let timer = setInterval(next, 5200);
+  let timer = setInterval(next, 5000);
   galleryStage.addEventListener("mouseenter", () => clearInterval(timer));
-  galleryStage.addEventListener("mouseleave", () => { timer = setInterval(next, 5200); });
+  galleryStage.addEventListener("mouseleave", () => { timer = setInterval(next, 5000); });
+  
+  // Support du balayage (swipe) tactile sur mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+  
+  galleryStage.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+    clearInterval(timer);
+  }, {passive: true});
+  
+  galleryStage.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchStartX - touchEndX > 50) next(); // Swipe gauche
+    if (touchEndX - touchStartX > 50) prev(); // Swipe droite
+    timer = setInterval(next, 5000);
+  }, {passive: true});
 
-  // Copier le lien Airbnb
+  // Gestion du bouton copier le lien
   const airbnbLink = "https://www.airbnb.fr/rooms/1313574872188854127";
   const copyBtn = document.getElementById("copyLinkBtn");
   const copyResult = document.getElementById("copyResult");
 
   copyBtn.addEventListener("click", async () => {
-    try{
+    try {
       await navigator.clipboard.writeText(airbnbLink);
-      copyResult.style.display = "block";
-      setTimeout(() => copyResult.style.display = "none", 2200);
-    }catch(e){
+      copyResult.classList.add("show");
+      setTimeout(() => copyResult.classList.remove("show"), 2000);
+    } catch(e) {
       alert("Copie impossible automatiquement. Copiez manuellement :\n" + airbnbLink);
     }
   });
